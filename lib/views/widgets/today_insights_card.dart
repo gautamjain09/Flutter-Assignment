@@ -138,7 +138,7 @@ class _TodayInsightsCardState extends State<TodayInsightsCard> {
             height: 6,
             margin: const EdgeInsets.only(left: 12, right: 12),
             decoration: BoxDecoration(
-              color: AppColors.primaryLightColor,
+              color: AppColors.primaryLightColor.withOpacity(1),
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(10),
                 bottomRight: Radius.circular(10),
@@ -149,7 +149,7 @@ class _TodayInsightsCardState extends State<TodayInsightsCard> {
             height: 6,
             margin: const EdgeInsets.only(left: 24, right: 24),
             decoration: BoxDecoration(
-              color: AppColors.primaryLightColor,
+              color: AppColors.primaryLightColor.withOpacity(0.70),
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(10),
                 bottomRight: Radius.circular(10),
