@@ -19,7 +19,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late UserModel userModel;
-  static dynamic currentPageValue = 0.0;
   late List<dynamic> pages;
   final DataController _dataController = DataController();
   final PageController _pageController =
