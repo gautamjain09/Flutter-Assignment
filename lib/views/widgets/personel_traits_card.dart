@@ -17,127 +17,134 @@ class PersonelTraitsCard extends StatefulWidget {
 class _PersonelTraitsCardState extends State<PersonelTraitsCard> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Flexible(
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: AppColors.primaryLightColor,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Flexible(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Know your Queries",
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.offWhiteColor,
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        Flexible(
-                          child: Text(
-                            "Know yourself based on your Personality Traits",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.whiteColor,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        Flexible(
-                          child: Text(
-                            widget.personelTraitsModel.title,
-                            style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.whiteColor,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Flexible(
-                          child: Text(
-                            widget.personelTraitsModel.text,
-                            style: GoogleFonts.poppins(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.offWhiteColor,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: AppColors.secondaryColor,
-                    ),
-                    child: Center(
-                      child: Row(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.75,
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: [
+          Flexible(
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              height: MediaQuery.of(context).size.height * 0.75,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: AppColors.primaryLightColor,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Flexible(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Column(
                         mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.lock_open_rounded,
-                            size: 18,
-                            color: AppColors.offWhiteColor,
-                          ),
-                          const SizedBox(width: 8),
                           Text(
-                            "Unlock all 23 Personality Traits",
+                            "Know your Queries",
                             style: GoogleFonts.poppins(
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.w500,
                               color: AppColors.offWhiteColor,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          Flexible(
+                            child: Text(
+                              "Know yourself based on your Personality Traits",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          Flexible(
+                            child: Text(
+                              widget.personelTraitsModel.title,
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Flexible(
+                            child: Text(
+                              widget.personelTraitsModel.text,
+                              style: GoogleFonts.poppins(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.offWhiteColor,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  )
-                ],
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: AppColors.secondaryColor,
+                      ),
+                      child: Center(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.lock_open_rounded,
+                              size: 18,
+                              color: AppColors.offWhiteColor,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              "Unlock all 23 Personality Traits",
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.offWhiteColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        Container(
-          height: 10,
-          margin: const EdgeInsets.only(left: 12, right: 12),
-          decoration: BoxDecoration(
-            color: AppColors.primaryMediumColor,
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(5),
-              bottomRight: Radius.circular(5),
+          Container(
+            height: 6,
+            margin: const EdgeInsets.only(left: 12, right: 12),
+            decoration: BoxDecoration(
+              color: AppColors.primaryLightColor,
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              ),
             ),
           ),
-        ),
-        Container(
-          height: 10,
-          margin: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
-          decoration: BoxDecoration(
-            color: AppColors.primaryMediumDarkColor,
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(5),
-              bottomRight: Radius.circular(5),
+          Container(
+            height: 6,
+            margin: const EdgeInsets.only(left: 24, right: 24),
+            decoration: BoxDecoration(
+              color: AppColors.primaryLightColor,
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

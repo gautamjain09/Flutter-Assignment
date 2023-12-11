@@ -9,6 +9,7 @@ import 'package:melooha_flutter_assignment/views/widgets/personel_traits_card.da
 import 'package:melooha_flutter_assignment/views/widgets/pose_questions_card.dart';
 import 'package:melooha_flutter_assignment/views/widgets/today_insights_card.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:stacked_card_carousel/stacked_card_carousel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late UserModel userModel;
-  late List<dynamic> pages;
+  late List<Widget> pages;
   final DataController _dataController = DataController();
   final PageController _pageController =
       PageController(viewportFraction: 0.9, keepPage: true);
@@ -36,7 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void getPageModelList() {
-    pages = _dataController.getPageModelList();
+    pages = [
+      TodayInsightsCard(todayInsightsModel: DummyModels.todayInsightsModel),
+      CosmicForecastCard(cosmicForecastModel: DummyModels.cosmicForecastModel),
+      PoseQuestionsCard(poseQuestionsModel: DummyModels.poseQuestionsModel),
+      PersonelTraitsCard(personelTraitsModel: DummyModels.personelTraitsModel)
+    ];
   }
 
   @override
@@ -122,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: Container(
+        height: size.height,
         width: size.width,
         padding: const EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 4),
         color: AppColors.primaryDarkColor,
@@ -131,27 +138,12 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              child: PageView.builder(
-                physics: const PageScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
-                // pageSnapping: false,
-                padEnds: false,
-                scrollDirection: Axis.vertical,
-                controller: _pageController,
-                itemCount: pages.length,
-                itemBuilder: (_, index) {
-                  if (index == 0) {
-                    return TodayInsightsCard(todayInsightsModel: pages[index]);
-                  } else if (index == 1) {
-                    return CosmicForecastCard(
-                        cosmicForecastModel: pages[index]);
-                  } else if (index == 2) {
-                    return PoseQuestionsCard(poseQuestionsModel: pages[index]);
-                  } else {
-                    return PersonelTraitsCard(
-                        personelTraitsModel: pages[index]);
-                  }
-                },
+              child: StackedCardCarousel(
+                type: StackedCardCarouselType.fadeOutStack,
+                pageController: _pageController,
+                items: pages,
+                initialOffset: 4,
+                spaceBetweenItems: size.height,
               ),
             ),
             const SizedBox(width: 4),
