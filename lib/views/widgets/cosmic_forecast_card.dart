@@ -18,13 +18,13 @@ class _CosmicForecastCardState extends State<CosmicForecastCard> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.75,
+      height: MediaQuery.of(context).size.height * 0.70,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
           Flexible(
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.75,
+              height: MediaQuery.of(context).size.height * 0.70,
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(

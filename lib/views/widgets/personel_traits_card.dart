@@ -18,14 +18,14 @@ class _PersonelTraitsCardState extends State<PersonelTraitsCard> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.75,
+      height: MediaQuery.of(context).size.height * 0.70,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
           Flexible(
             child: Container(
               padding: const EdgeInsets.all(12),
-              height: MediaQuery.of(context).size.height * 0.75,
+              height: MediaQuery.of(context).size.height * 0.70,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: AppColors.primaryLightColor,
