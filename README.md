@@ -1,4 +1,4 @@
-# melooha_flutter_assignment
+# flutter_assignment
 
 A new Flutter project.
 
