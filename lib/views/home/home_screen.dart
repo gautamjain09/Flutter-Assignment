@@ -4,10 +4,10 @@ import 'package:melooha_flutter_assignment/controllers/data_controller.dart';
 import 'package:melooha_flutter_assignment/core/colors.dart';
 import 'package:melooha_flutter_assignment/models/dummy_models.dart';
 import 'package:melooha_flutter_assignment/models/user_model.dart';
-import 'package:melooha_flutter_assignment/views/widgets/cosmic_forecast_card.dart';
-import 'package:melooha_flutter_assignment/views/widgets/personel_traits_card.dart';
-import 'package:melooha_flutter_assignment/views/widgets/pose_questions_card.dart';
-import 'package:melooha_flutter_assignment/views/widgets/today_insights_card.dart';
+import 'package:melooha_flutter_assignment/views/home/widgets/cosmic_forecast_card.dart';
+import 'package:melooha_flutter_assignment/views/home/widgets/personel_traits_card.dart';
+import 'package:melooha_flutter_assignment/views/home/widgets/pose_questions_card.dart';
+import 'package:melooha_flutter_assignment/views/home/widgets/today_insights_card.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:stacked_card_carousel/stacked_card_carousel.dart';
 

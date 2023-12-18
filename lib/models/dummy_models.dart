@@ -1,17 +1,50 @@
-import 'package:melooha_flutter_assignment/core/constants.dart';
+import 'package:melooha_flutter_assignment/core/assets.dart';
+import 'package:melooha_flutter_assignment/models/feedback_model.dart';
 import 'package:melooha_flutter_assignment/models/home/cosmic_forecast_model.dart';
 import 'package:melooha_flutter_assignment/models/home/personel_traits_model.dart';
 import 'package:melooha_flutter_assignment/models/home/pose_questions_model.dart';
 import 'package:melooha_flutter_assignment/models/home/today_insights_model.dart';
+import 'package:melooha_flutter_assignment/models/order_model.dart';
 import 'package:melooha_flutter_assignment/models/user_model.dart';
 
 class DummyModels {
+  static FeedbackModel dummyFeedbackModel = FeedbackModel(
+    id: "9",
+    text:
+        "Accurate predictions. I like the way Vaani suggests the personalised questions. I wanted to suggest if we could have",
+    createdTime: "Oct 22, 2023",
+  );
+
+  static OrderModel dummyFailedOrderModel = OrderModel(
+    icon: AppAssets.questionIcon,
+    text: "Questions - Gold",
+    orderTime: "Dec 12, 2023, 12:34 PM",
+    transationId: "TXN804740234",
+    amount: "149",
+    orderStatus: "Failed",
+  );
+
+  static OrderModel dummySuccessOrderModel = OrderModel(
+    icon: AppAssets.reportIcon,
+    text: "Reports - Diamond",
+    orderTime: "Dec 12, 2023, 12:34 PM",
+    transationId: "TXN804740234",
+    amount: "149",
+    orderStatus: "Success",
+  );
+
   static UserModel userModel = UserModel(
+    userId: "09",
     name: "Gautam Jain",
-    userId: "gj09",
-    emailId: "gj09@gmail.com",
-    profileImage: AppConstants.dummyProfileImage,
-    deviceToken: "deviceToken",
+    gender: "Male",
+    emailId: "gj@gmail.com",
+    phoneNumber: "+919999999999",
+    profileImage: "",
+    dateOfBirth: "June 20, 1996",
+    placeOfBirth: "Pune, Maharashtra, India",
+    joiningTime: "Oct 12, 2023",
+    timeOfBirth: "02 : 10 PM",
+    privateProfile: false,
   );
 
   static TodayInsightsModel todayInsightsModel = TodayInsightsModel(

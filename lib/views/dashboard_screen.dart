@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:melooha_flutter_assignment/core/colors.dart';
 import 'package:melooha_flutter_assignment/models/dummy_models.dart';
 import 'package:melooha_flutter_assignment/models/user_model.dart';
-import 'package:melooha_flutter_assignment/views/home_screen.dart';
-import 'package:melooha_flutter_assignment/views/profile_screen.dart';
-import 'package:melooha_flutter_assignment/views/questions_screen.dart';
-import 'package:melooha_flutter_assignment/views/reports_screen.dart';
+import 'package:melooha_flutter_assignment/views/home/home_screen.dart';
+import 'package:melooha_flutter_assignment/views/profile/profile_screen.dart';
+import 'package:melooha_flutter_assignment/views/questions/questions_screen.dart';
+import 'package:melooha_flutter_assignment/views/reports/reports_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   final int pageIndex;
@@ -43,7 +43,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryDarkColor,
+      backgroundColor: AppColors.blue1000,
       body: pages[_pageIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: (idx) {
@@ -52,10 +52,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
           });
         },
         currentIndex: _pageIndex,
-        backgroundColor: AppColors.primaryMediumColor,
+        backgroundColor: AppColors.blue900,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColors.secondaryColor,
-        unselectedItemColor: AppColors.greyColor,
+        selectedItemColor: AppColors.pink600,
+        unselectedItemColor: AppColors.blue400,
         selectedFontSize: 14,
         unselectedFontSize: 14,
         items: [
