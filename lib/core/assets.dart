@@ -18,6 +18,7 @@ class AppAssets {
   static const questionIcon = "assets/icons/chat-smile-3-line.svg";
   static const shieldStarIcon = "assets/icons/shield-star-line.svg";
   static const copyLinkIcon = "assets/icons/file-copy-line.svg";
+  static const deleteIcon = "assets/icons/delete-icon.svg";
 
   // My Profile - Image
   static const emptyFeedbackImage = "assets/images/Empty feedback.svg";

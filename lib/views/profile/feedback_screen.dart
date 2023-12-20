@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:melooha_flutter_assignment/controllers/data_controller.dart';
@@ -169,6 +170,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 void showCustomBottomSheet({
   required BuildContext context,
 }) {
+  List<File> feedbackImages = [];
   final TextEditingController _textController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey();
   final size = MediaQuery.of(context).size;
@@ -182,225 +184,288 @@ void showCustomBottomSheet({
     backgroundColor: AppColors.blue900,
     context: context,
     builder: (context) {
-      return Form(
-        key: _formKey,
-        child: Container(
-          width: size.width,
-          padding: const EdgeInsets.all(16),
-          color: AppColors.blue900,
-          height: size.height * 0.86,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: size.width,
-                child: Center(
-                  child: Text(
-                    "Share Feedback",
-                    style: TextStyle(
-                      fontFamily: AppFonts.secondaryFont,
-                      color: AppColors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              Text(
-                "Tell us about your experience. Your insights will help us enhance your experience with Melooha.",
-                style: TextStyle(
-                  fontFamily: AppFonts.primaryFont,
-                  color: AppColors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              const SizedBox(height: 16),
-              Stack(
-                alignment: Alignment.bottomRight,
+      return StatefulBuilder(
+        builder: (BuildContext context, setState) {
+          return Form(
+            key: _formKey,
+            child: Container(
+              width: size.width,
+              padding: const EdgeInsets.all(16),
+              color: AppColors.blue900,
+              height: size.height * 0.86,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
                     width: size.width,
-                    height: 280,
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Enter your feedback';
-                        }
-                        return null;
-                      },
-                      style: TextStyle(
-                        fontFamily: AppFonts.primaryFont,
-                        color: AppColors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      minLines: null,
-                      maxLines: null,
-                      expands: true,
-                      autofocus: false,
-                      controller: _textController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: AppColors.blue800,
-                        border: InputBorder.none,
-                        hintText: "Start writing your thoughts..",
-                        hintStyle: TextStyle(
-                          fontFamily: AppFonts.primaryFont,
-                          color: AppColors.blue400,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(AppSizes.paddingLarge),
-                    child: Text(
-                      "0/1000 Characters",
-                      style: TextStyle(
-                        fontFamily: AppFonts.primaryFont,
-                        color: AppColors.blue400,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              Text(
-                "Attach Image",
-                style: TextStyle(
-                  fontFamily: AppFonts.primaryFont,
-                  color: AppColors.blue300,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                height: 64,
-                width: 64,
-                padding: const EdgeInsets.all(AppSizes.paddingSmall),
-                decoration: BoxDecoration(
-                  color: AppColors.blue600,
-                  borderRadius: BorderRadius.circular(3),
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.add,
-                    color: AppColors.white,
-                    size: 20,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(AppSizes.paddingSmall),
-                    decoration: BoxDecoration(
-                      color: AppColors.blue800,
-                      borderRadius: BorderRadius.circular(
-                        AppSizes.cornerRadiusSizeFour,
-                      ),
-                    ),
                     child: Center(
-                      child: SvgPicture.asset(
-                        AppAssets.shieldStarIcon,
+                      child: Text(
+                        "Share Feedback",
+                        style: TextStyle(
+                          fontFamily: AppFonts.secondaryFont,
+                          color: AppColors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      "Information shared with Melooha are strictly private and solely for your personal improvement.",
-                      style: TextStyle(
-                        fontFamily: AppFonts.primaryFont,
-                        color: AppColors.blue300,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
+                  const SizedBox(height: 24),
+                  Text(
+                    "Tell us about your experience. Your insights will help us enhance your experience with Melooha.",
+                    style: TextStyle(
+                      fontFamily: AppFonts.primaryFont,
+                      color: AppColors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
+                  const SizedBox(height: 16),
+                  Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      SizedBox(
+                        width: size.width,
+                        height: 280,
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Enter your feedback';
+                            }
+                            return null;
+                          },
+                          style: TextStyle(
+                            fontFamily: AppFonts.primaryFont,
+                            color: AppColors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          minLines: null,
+                          maxLines: null,
+                          expands: true,
+                          autofocus: false,
+                          controller: _textController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: AppColors.blue800,
+                            border: InputBorder.none,
+                            hintText: "Start writing your thoughts..",
+                            hintStyle: TextStyle(
+                              fontFamily: AppFonts.primaryFont,
+                              color: AppColors.blue400,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(AppSizes.paddingLarge),
+                        child: Text(
+                          "0/1000 Characters",
+                          style: TextStyle(
+                            fontFamily: AppFonts.primaryFont,
+                            color: AppColors.blue400,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    "Attach Image",
+                    style: TextStyle(
+                      fontFamily: AppFonts.primaryFont,
+                      color: AppColors.blue300,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 64,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          physics: const ClampingScrollPhysics(),
+                          itemCount: feedbackImages.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () async {
+                                    feedbackImages.removeAt(index);
+                                    setState(() {});
+                                  },
+                                  child: Container(
+                                    height: 64,
+                                    width: 64,
+                                    padding: const EdgeInsets.all(
+                                        AppSizes.paddingSmall),
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: FileImage(feedbackImages[index]),
+                                        fit: BoxFit.fill,
+                                        opacity: 0.6,
+                                      ),
+                                      // color: AppColors.blue600,
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                    child: Center(
+                                      child: SvgPicture.asset(
+                                          AppAssets.deleteIcon),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          File? pickedImage = await pickImage();
+                          if (pickedImage != null) {
+                            feedbackImages.add(pickedImage);
+                          }
+                          setState(() {});
+                        },
+                        child: Container(
+                          height: 64,
+                          width: 64,
+                          padding: const EdgeInsets.all(AppSizes.paddingSmall),
+                          decoration: BoxDecoration(
+                            color: AppColors.blue600,
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          child: const Center(
+                            child: Icon(
+                              Icons.add,
+                              color: AppColors.white,
+                              size: 24,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(AppSizes.paddingSmall),
+                        decoration: BoxDecoration(
+                          color: AppColors.blue800,
+                          borderRadius: BorderRadius.circular(
+                            AppSizes.cornerRadiusSizeFour,
+                          ),
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            AppAssets.shieldStarIcon,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          "Information shared with Melooha are strictly private and solely for your personal improvement.",
+                          style: TextStyle(
+                            fontFamily: AppFonts.primaryFont,
+                            color: AppColors.blue300,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            width: size.width,
+                            padding:
+                                const EdgeInsets.all(AppSizes.paddingLarge),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1, color: AppColors.pink600),
+                              borderRadius: BorderRadius.circular(
+                                  AppSizes.cornerRadiusSizeEight),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Back",
+                                style: TextStyle(
+                                  fontFamily: AppFonts.primaryFont,
+                                  color: AppColors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              if (_textController.text.trim() != "") {
+                                pushScreenNavigation(
+                                  widget: const SubmitFeedbackScreen(),
+                                  context: context,
+                                );
+                              }
+                            }
+                          },
+                          child: Container(
+                            width: size.width,
+                            padding:
+                                const EdgeInsets.all(AppSizes.paddingLarge),
+                            decoration: BoxDecoration(
+                              color: AppColors.pink600,
+                              borderRadius: BorderRadius.circular(
+                                  AppSizes.cornerRadiusSizeEight),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Submit",
+                                style: TextStyle(
+                                  fontFamily: AppFonts.primaryFont,
+                                  color: AppColors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Container(
-                        width: size.width,
-                        padding: const EdgeInsets.all(AppSizes.paddingLarge),
-                        decoration: BoxDecoration(
-                          border:
-                              Border.all(width: 1, color: AppColors.pink600),
-                          borderRadius: BorderRadius.circular(
-                              AppSizes.cornerRadiusSizeEight),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Back",
-                            style: TextStyle(
-                              fontFamily: AppFonts.primaryFont,
-                              color: AppColors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        if (_formKey.currentState!.validate()) {
-                          if (_textController.text.trim() != "") {
-                            pushScreenNavigation(
-                              widget: const SubmitFeedbackScreen(),
-                              context: context,
-                            );
-                          }
-                        }
-                      },
-                      child: Container(
-                        width: size.width,
-                        padding: const EdgeInsets.all(AppSizes.paddingLarge),
-                        decoration: BoxDecoration(
-                          color: AppColors.pink600,
-                          borderRadius: BorderRadius.circular(
-                              AppSizes.cornerRadiusSizeEight),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Submit",
-                            style: TextStyle(
-                              fontFamily: AppFonts.primaryFont,
-                              color: AppColors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       );
     },
   );

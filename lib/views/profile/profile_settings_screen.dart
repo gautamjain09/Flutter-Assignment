@@ -23,19 +23,12 @@ class ProfileSettingsScreen extends StatefulWidget {
 
 class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   late bool isProfilePrivate;
+  File? profileImage;
 
   @override
   void initState() {
     super.initState();
     isProfilePrivate = widget.userModel.privateProfile;
-  }
-
-  pickImageFunction() async {
-    File? pickedImage = await pickImage();
-    if (pickedImage != null) {
-      debugPrint("Image Picked from Gallery");
-    }
-    setState(() {});
   }
 
   @override
@@ -117,11 +110,10 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                   Stack(
                     alignment: Alignment.bottomRight,
                     children: [
-                      (widget.userModel.profileImage != "")
+                      (profileImage != null)
                           ? CircleAvatar(
                               radius: 50,
-                              backgroundImage:
-                                  NetworkImage(widget.userModel.profileImage),
+                              backgroundImage: FileImage(profileImage!),
                             )
                           : CircleAvatar(
                               radius: 50,
@@ -129,8 +121,12 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                                   NetworkImage(AppConstants.dummyProfileImage),
                             ),
                       GestureDetector(
-                        onTap: () {
-                          pickImageFunction();
+                        onTap: () async {
+                          File? pickedImage = await pickImage();
+                          if (pickedImage != null) {
+                            profileImage = pickedImage;
+                          }
+                          setState(() {});
                         },
                         child: CircleAvatar(
                           radius: 18,
